@@ -12,6 +12,7 @@
 #include <hal/reg.h>
 
 #include <drivers/clk/ccm_imx6.h>
+#include <drivers/iomuxc.h>
 
 #include <framework/mod/options.h>
 #include <embox/unit.h>
@@ -29,11 +30,7 @@ EMBOX_UNIT_INIT(ldb_init);
 #define LDB_CH1_DI0     0x4
 #define LDB_CH1_DI1     0xC
 
-#define IOMUXC_GPR2	0x20E0008
-#define IOMUXC_GPR3	0x20E000C
-
 #define CCM_ANALOG_MISC1 0x20C8160
-
 
 #define LDB_BGREF_RMODE_MASK		0x00008000
 #define LDB_BGREF_RMODE_INT		0x00008000
@@ -74,7 +71,7 @@ EMBOX_UNIT_INIT(ldb_init);
 static int ldb_init(void) {
 	uint32_t reg;
 
-	REG32_CLEAR(IOMUXC_GPR3, 3 << 6);
+	iomuxc_set_reg(IOMUXC_GPR3, 3 << 6);
 
 	reg = REG32_LOAD(LDB_CTRL);
 
