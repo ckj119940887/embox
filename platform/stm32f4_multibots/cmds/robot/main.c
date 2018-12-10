@@ -168,11 +168,6 @@ static void robot_config_motors(struct stepper_motor *motor1,
 }
 
 static int robot_config_gy_30(int i2c_nr, int mode) {
-	if (gy_30_init(i2c_nr) < 0) {
-		printf("gy_30_init failed\n");
-		return -1;
-	}
-
 	gy_30_setup_mode(mode);
 
 	return 0;
