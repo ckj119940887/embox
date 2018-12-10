@@ -2,9 +2,11 @@ package embox.driver.i2c
 
 @BuildDepends(third_party.bsp.stmf4cube.core)
 module stm32f4 {
-	option number log_level=0
+	option number log_level=1
 
-	source "i2c_hal_msp.c"
+	source "i2c_hal_msp.c",
+			"i2c_core.c"
 
+	depends embox.driver.i2c
 	depends third_party.bsp.stmf4cube.stm32f4_discovery_bsp
 }
