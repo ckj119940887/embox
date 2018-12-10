@@ -76,11 +76,6 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	if (gy_30_init(i2c_nr) < 0) {
-		printf("gy_30_init failed\n");;
-		return -1;
-	}
-
 	print_lx(mode);
 
 	return 0;
