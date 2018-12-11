@@ -21,7 +21,6 @@ static int imx_i2c_master_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs
 
 const struct i2c_algorithm imx_i2c_algo = {
 		.i2c_master_xfer = imx_i2c_master_xfer,
-		.i2c_functionality = NULL,
 };
 
 static void delay(int i) {
