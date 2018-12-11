@@ -77,11 +77,11 @@ struct i2c_bus *i2c_bus_get(int id) {
 	return i2c_bus_repo[id];
 }
 
-int i2c_bus_read(int id, uint16_t addr, uint8_t *ch, size_t sz) {
+int i2c_bus_read(int id, uint16_t addr, const uint8_t *ch, size_t sz) {
 	struct i2c_bus *bus;
 	struct i2c_msg msg = {
 			.addr = addr,
-			.buf = ch,
+			.buf = (uint8_t *)ch,
 			.flags = I2C_M_RD,
 			.len = sz
 	};
@@ -96,11 +96,11 @@ int i2c_bus_read(int id, uint16_t addr, uint8_t *ch, size_t sz) {
 	return bus->i2c_adapter->i2c_algo->i2c_master_xfer(bus->i2c_adapter, &msg, 1);
 }
 
-int i2c_bus_write(int id, uint16_t addr, uint8_t *ch, size_t sz) {
+int i2c_bus_write(int id, uint16_t addr, const uint8_t *ch, size_t sz) {
 	struct i2c_bus *bus;
 	struct i2c_msg msg = {
 			.addr = addr,
-			.buf = ch,
+			.buf = (uint8_t *)ch,
 			.flags = 0,
 			.len = sz
 	};
